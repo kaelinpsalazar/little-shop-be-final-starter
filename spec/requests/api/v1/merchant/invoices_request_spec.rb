@@ -56,4 +56,16 @@ RSpec.describe "Merchant invoices endpoints" do
     expect(json[:errors]).to be_a Array
     expect(json[:errors].first).to eq("Couldn't find Merchant with 'id'=100000")
   end
+  describe 'GET /show' do
+    it 'successfully shows an invoice' do
+      get "/api/v1/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}" # Updated this line
+
+      expect(response).to be_successful
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      
+    end
+
+  end
+
 end
