@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_08_151254) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_11_024433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_08_151254) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "merchant_id", null: false
+    t.boolean "active", default: true
     t.index ["merchant_id"], name: "index_coupons_on_merchant_id"
   end
 
@@ -49,6 +50,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_08_151254) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "coupon_id"
+    t.integer "coupon_count"
+    t.integer "invoice_coupon_counter"
     t.index ["coupon_id"], name: "index_invoices_on_coupon_id"
     t.index ["customer_id"], name: "index_invoices_on_customer_id"
     t.index ["merchant_id"], name: "index_invoices_on_merchant_id"
@@ -68,6 +71,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_08_151254) do
     t.string "name"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.integer "coupons_count", default: 0
+    t.integer "invoice_coupon_count", default: 0
   end
 
   create_table "transactions", force: :cascade do |t|

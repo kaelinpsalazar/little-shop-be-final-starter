@@ -43,4 +43,12 @@ class Merchant < ApplicationRecord
   def self.find_one_merchant_by_name(name)
     Merchant.find_all_by_name(name).order("LOWER(name)").first
   end
+
+  def coupon_count
+    coupons.count
+  end
+
+  def invoice_coupon_count
+    invoices.joins(:coupon).distinct.count
+  end
 end

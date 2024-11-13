@@ -76,7 +76,7 @@ describe Merchant, type: :model do
       expect(merchant2.distinct_customers).to eq([customer3])
     end
 
-    it "#invoices_filtered_by_status should return all invoices for a customer that match the given status" do
+    it "hould return all invoices for a customer that match th status" do
       merchant = create(:merchant)
       other_merchant = create(:merchant)
       customer = create(:customer)
@@ -90,6 +90,12 @@ describe Merchant, type: :model do
       expect(merchant.invoices_filtered_by_status("packaged")).to eq([inv_3_packaged])
       expect(merchant.invoices_filtered_by_status("returned")).to eq([inv_5_returned])
       expect(other_merchant.invoices_filtered_by_status("packaged")).to eq([inv_4_packaged])
+    end
+    it 'returns the number of coupons associated with the merchant' do
+      merchant = create(:merchant)  
+      create_list(:coupon, 3, merchant: merchant) 
+      
+      expect(merchant.coupon_count).to eq(3) 
     end
   end
 end

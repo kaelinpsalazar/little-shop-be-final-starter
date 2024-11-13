@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  patch '/api/v1/merchants/:merchant_id/coupons/:id', to: 'api/v1/merchants/coupons#update'
+
   namespace :api do
     namespace :v1 do
       namespace :items do
